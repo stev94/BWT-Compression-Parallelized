@@ -28,7 +28,7 @@
  */
 
 #include "../headers/bwt.h"
-#include "../extern/uthash.h"
+#include "../include/uthash.h"
 
 #define SENTINEL 256;	///< Sentinel character.
 

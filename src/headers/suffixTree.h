@@ -47,7 +47,7 @@
 #ifndef SUFFIX_TREE_H
 #define SUFFIX_TREE_H
 
-#include "../extern/uthash.h"
+#include "../include/uthash.h"
 #include "util.h"
 
 /**
