@@ -1,2 +1,4 @@
 build/
 pbwtzip
+/bin/
+/.idea/
