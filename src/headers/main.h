@@ -19,72 +19,32 @@
  ******************************************************************************/
 
 /**
- * @file 	bwtUnzip.c
+ * @file 	main.h
  * @author 	Stefano Valladares, ste.valladares@live.com
  * @date	20/12/2018
  * @version 1.1
  *
- * @brief 	Source file implementing the sequential version of the
- * 			Burrows-Wheeler decompression.
+ * @brief	Main header of the application.
  */
 
-#include "../headers/bwtUnzip.h"
+#include "bwtUnzip.h"
+#include "parallelBwtZip.h"
+#include "sequentialBwtZip.h"
 
-/**
- * This function applies in reverse the four step of the BWT
- * decompression in sequence to a single sequence of bytes. @n
- * The main phase are:
- */
-Text bwtUnzip(const Text input)
+typedef struct timespec ts;
+
+typedef struct Results 
 {
-	///-# Arithmetic decoding.
-	Text decompressed = arithDecoding(input);
+    double executionTime;
+    long chunkSize;
 
-	///-# Zero-length deconding.
-	Text zleDecoded = zleDecoding(decompressed);
+} Results;
 
-	///-# MTF reverse transformation.
-	Text mtfReverse = unmtf(zleDecoded);
+Results _run(void (*runner)(file *in, FILE *out, clong chunkSize),
+             cstr inPath, cstr outPath, clong chunkSize, cstr action);
 
-	///-# BWT reverse transformation.
-	Text bwtReverse = unbwt(mtfReverse);
+Results zip(str in, str out, cchar mode, clong chunkSize);
 
-	return bwtReverse;
-}
+Results unzip(cstr in, cstr out);
 
-/**
- * The compressed file is read. First the encoded length and the id
- * are extract from the file. Then if the id is 1 the compressed chunk
- * of the length read before is decompressed and written out in the
- * output file. The code is consistency with the compression version.
- */
-void decompress(FILE *input, FILE *output, clong chunkSize)
-{
-	while(1) {
-
-		Text inUnzip, decompressed, length;
-		unsigned char *id;
-
-		length = readFile(input, chunkSize);
-
-		if(length.len == 0) {
-			free(length.text);
-			break;
-		}
-
-		id = readFile(input, 1).text;
-		inUnzip.len = readUnsigned(length.text, 0);
-		inUnzip.text = readFile(input, inUnzip.len).text;
-
-		if(id[0] == 1)
-			decompressed = bwtUnzip(inUnzip);
-		else
-			decompressed = inUnzip;
-
-		writeFile(output, decompressed.text, decompressed.len);
-
-		free(decompressed.text);
-		free(length.text);
-		free(id);
-	}
-}
+int compare(cstr in, cstr out);

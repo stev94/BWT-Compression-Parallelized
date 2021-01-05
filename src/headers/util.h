@@ -45,6 +45,12 @@
 #define DEFAULT_CHUNK_SIZE	(0.9  * 1024 * 1024)	///<	Default chunk size.
 #define MIN_CHUNK_SIZE    	(300)	///< Min size for a chunk to be compressed.
 
+// TYPEDEFS
+typedef const long clong;
+typedef char* str;
+typedef const char cchar;
+typedef char *const cstr;
+typedef FILE* const file;
 
 /**
  * This structure is the one who stores the sequence of bytes to be compress

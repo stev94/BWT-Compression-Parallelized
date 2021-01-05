@@ -30,7 +30,6 @@
 
 #include "../headers/util.h"
 
-
 unsigned char decomposeUnsigned(unsigned u, int n) {
     return (u >> (24 - 8 * n)) & 0xFF;
 }

@@ -59,6 +59,6 @@ Text bwtUnzip(const Text input);
  * @param[in] 	input		The file to decompress
  * @param[out]	output		The file where decompress.
  */
-void decompress(FILE *input, FILE *output);
+void decompress(FILE *input, FILE *output, clong chunkSize);
 
 #endif
