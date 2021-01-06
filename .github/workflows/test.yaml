@@ -25,4 +25,4 @@ jobs:
         run: make test-c
 
       - name: Running python tests
-        run: make test-cli
+        run: pip install Click && make test-cli
