@@ -12,7 +12,7 @@ VERSION ?= ${version}
 
 include makefiles/*
 
-all: build clean help version start-dev-env clean-dev-env
+all: build clean help version start-dev-env clean-dev-env test
 
 .PHONY: help
 help:										## Show this help
@@ -22,13 +22,17 @@ help:										## Show this help
 clean: clean-c clean-cli					## Clean builds folder
 	@echo "Everything cleaned."
 
+.PHONY: test
+test: test-cli test-c						## Run all the tests
+	@echo "Test runned successfully"
+
 .PHONY: version
-version:    					## Print some version info
+version:    								## Print some version info
 	@echo -e "\033[0;32m$(TARGET):\033[0m current: \033[0;34m$(this_version)\033[0m master: \033[0;36m$(master_version)\033[0m"
 
-.PHONY: build
-build: build-c build-cli					## Build executable
-	@echo "Built executable"
+.PHONY: install
+install: build-c build-cli					## Install executable
+	@echo "Executable installed"
 
 .PHONY: start-dev-env
 start-dev-env: build-c cli-dependencies		## Install python dependencies
