@@ -25,4 +25,4 @@ jobs:
         run: make test-c
 
       - name: Running python tests
-        run: export PYTHONPATH=. && make test-cli
+        run: make test-cli
