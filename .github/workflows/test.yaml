@@ -26,4 +26,3 @@ jobs:
 
       - name: Running python tests
         run: make test-cli
-        working-directory: .
