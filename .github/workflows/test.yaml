@@ -20,11 +20,9 @@ jobs:
         run: |
           pip install virtualenv pyinstaller pytest &&
           make install
-        working-directory: .
 
       - name: Running c tests
         run: make test-c
-        working-directory: .
 
       - name: Running python tests
         run: make test-cli
