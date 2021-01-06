@@ -18,7 +18,7 @@ INCL := -I$(CURDIR)/src/include -I$(HDR_DIR)
 # C stuff
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic -g -O0 $(INCL)
-LFLAGS = -lm -lpthread
+LFLAGS = -lpthread -lm
 
 
 .PHONY: test-c
@@ -44,7 +44,7 @@ build-dirs:									## Create build directories
 	@mkdir -p $(BIN_DIR)
 
 $(BIN_DIR)/$(TARGET): $(OBJS)				## Link
-	$(CC) $(LFLAGS) -o $@ $(OBJS)
+	$(CC) -o $@ $(OBJS) $(LFLAGS)
 	@echo "Linking completed"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 				## Compile sources
