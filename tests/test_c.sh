@@ -10,6 +10,7 @@ tmp_file=${test_file%.*}.unpbwt
 ./bin/pbwt zip "$test_file" "$out_file" 1 p
 ./bin/pbwt unzip "$out_file" "$tmp_file"
 ./bin/pbwt compare "$test_file" "$tmp_file"
+result=$?
 
 rm -f "$out_file"
 rm -f "$tmp_file"

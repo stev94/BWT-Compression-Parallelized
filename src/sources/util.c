@@ -93,23 +93,7 @@ Text readFile(FILE *const file, long size)
 
 FILE *openFileWB(char *const filename)
 {
-	FILE *f = fopen(filename, "rb");
-	char c;
-
-	if(f != NULL) {
-		printf("The file %s already exists, do "
-			   "you want to overwrite it?[y/n]", filename);
-		scanf("%c", &c);
-
-		if(c == 'n') {
-			abort();
-			fclose(f);
-			return NULL;
-		}
-		fclose(f);
-	}
-
-	f = fopen(filename, "wb");
+	FILE *f = fopen(filename, "wb");
 
 	if(f != NULL)
 		return f;

@@ -102,17 +102,22 @@ int main(int argc, char *argv[], char *env[])
         clong chunkSize = atof(argv[4]) * 1024 * 1024;
         cchar mode = argv[5];
         Results results = zip(inPath, outPath, mode, chunkSize);
-        printf("Results are: execution_time %ld - chunk_size = %d" ,
+        printf("Results are: execution_time %ld - chunk_size = %d.\n" ,
                 results.executionTime, results.chunkSize);
         return 0;
     } else if (!strcmp(action, "unzip"))
     {
         Results results = unzip(inPath, outPath);
-        printf("Results are: execution_time %ld - chunk_size = %d" ,
+        printf("Results are: execution_time %ld - chunk_size = %d.\n" ,
                 results.executionTime, results.chunkSize);
         return 0;
     } else
     {
-        return compare(inPath, outPath);
+        int result = compare(inPath, outPath);
+        if (result == 0)
+            printf("The files are equal.\n");
+        else
+            printf("The files are not equal.\n");
+        return result;
     }
 }

@@ -3,11 +3,11 @@ import glob
 import shutil
 import unittest
 
-import cli.pbwt_cli as pbwt
-import cli.cpbwt.pbwt_cli_cython as cpbwt
-
 from zipfile import ZipFile
-from cli.version import ROOT_DIR
+
+import cli.pbwt as pbwt
+from cli.cpbwt import pbwt_cli_cython as cpbwt
+from cli.constants import ROOT_DIR
 
 TEST_CASES_FOLDER = os.path.join(ROOT_DIR, 'tests', 'examples')
 ZIPS = glob.glob(os.path.join(TEST_CASES_FOLDER, '*.zip'))
@@ -47,7 +47,7 @@ class TestPBWT(unittest.TestCase):
             self.assertEqual(e.code, 0)
 
     def run_test(self, testfile, index, pbwt):
-        mode = 'p' if index % 2 == 0 else 's'
+        mode = 'parallel' if index % 2 == 0 else 'sequential'
         print(f'PBWTTEST - Starting test of {testfile} with mode {mode}')
         outfile = testfile.split('.')[0] + '.pbwt'
         tmpfile = testfile.split('.')[0] + '.unpbwt'
