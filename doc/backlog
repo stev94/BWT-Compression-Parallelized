@@ -1,7 +1,5 @@
 HIGH:
 - create part of git in makefile
-- autocomplete click
-- setup ci
 
 DIFFICULT:
 make pbwt work with directories (easy if we use python to zip everything together)
