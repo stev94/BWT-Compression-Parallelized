@@ -1,5 +1,5 @@
 # app name
-TARGET = pbwt
+TARGET = cpbwt
 
 # directories
 SRC_DIR ?= $(CURDIR)/src/sources

@@ -41,12 +41,13 @@ Below you can find how to install the full program (c and python), and how to us
       zip      Zip the input file and put the result in the output file.
    ```
    
-5. [OPTIONAL]. If you want to use pbwt from everywhere inside your computer follow 
+5. If you want to use pbwt from everywhere inside your computer follow 
    the following commands:
    ```
    cd Parallel-BWT-Compression
-   sudo mv pbwt /usr/local/bin/pbwt
-   sudo chmod 755 /usr/local/bin/pbwt
+   sudo mv pbwt /usr/bin/pbwt
+   sudo mv bin/cpbwt /usr/bin/cpbwt
+   sudo chmod 755 /usr/bin/pbwt
    ```
    
 6. Verify the installation by typing the following command from everywhere in your computer
@@ -55,6 +56,17 @@ Below you can find how to install the full program (c and python), and how to us
     pwbt 
    ```
 
+### Auto-completion
+
+To install the autocomplete of the cli application you can follow the following steps.
+Note that you must have the application already setup in your system:
+```
+mkdir -p ~/.pbwt
+cd Parallel-BWT-Compression
+mv pbwt_autocomplete.sh ~/.pbwt
+echo '. ~/.pbwt/pbwt_autocomplete.sh' >> ~/.bashrc
+source ~/.bashrc
+```
 
 ## How to use
 Three commands are available:
