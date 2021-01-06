@@ -17,7 +17,7 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
-        run: make install
+        run: pip install virtualenv && make install
 
       - name: Running c tests
         run: make test-c
