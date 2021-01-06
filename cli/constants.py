@@ -16,7 +16,7 @@ RUNNING_MODES_HELP = 'Specify if running PBWT in parallel or sequentially. Paral
 
 # files and directoeis
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PBWT_BIN = os.path.join('bin', 'pbwt')
+PBWT_BIN = os.path.join('bin', 'cpbwt')
 
 # Messages
 PREFIX_MSG = 'PBWT - '

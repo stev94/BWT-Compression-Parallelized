@@ -10,7 +10,8 @@ make-venv:									## Create python venv
 .PHONY: clean-cli
 clean-cli:									## Clean python build stuff
 	@rm -rf $(CURDIR)/venv && \
-	rm -f $(CURDIR)/pbwt
+	rm -f $(CURDIR)/pbwt && \
+	rm -f pbwt_autocomplete.sh
 
 .PHONY: cli-dependencies
 cli-dependencies: make-venv					## Install cli dependencies
@@ -18,3 +19,7 @@ cli-dependencies: make-venv					## Install cli dependencies
 	cd cli && \
 	pip install -e . && \
 	rm -rf pbwt_cli.egg-info
+
+.PHONY: build-autocomplete
+build-autocomplete: 						## Builds autocomplete
+	$(shell source venv/bin/activate && _PBWT_COMPLETE=source ./pbwt > pbwt_autocomplete.sh)

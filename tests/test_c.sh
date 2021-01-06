@@ -7,9 +7,9 @@ test_file="$ROOT_DIR"/tests/examples/world192.txt
 out_file=${test_file%.*}.pbwt
 tmp_file=${test_file%.*}.unpbwt
 
-./bin/pbwt zip "$test_file" "$out_file" 1 p
-./bin/pbwt unzip "$out_file" "$tmp_file"
-./bin/pbwt compare "$test_file" "$tmp_file"
+./bin/cpbwt zip "$test_file" "$out_file" 1 p
+./bin/cpbwt unzip "$out_file" "$tmp_file"
+./bin/cpbwt compare "$test_file" "$tmp_file"
 result=$?
 
 rm -f "$out_file"

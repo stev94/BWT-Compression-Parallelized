@@ -3,6 +3,8 @@ SHELL := /bin/bash
 THIS_FILE := $(firstword $(MAKEFILE_LIST))
 THIS_FOLDER := $(shell basename $(CURDIR))
 
+export _PBWT_COMPLETE=source
+
 master_version := $$(git show master:cli/version.py | grep __version__ | awk -F= '{print $$2}' | awk -F\' '{print $$2}')
 this_branch := $(shell git rev-parse --abbrev-ref HEAD)
 
@@ -31,7 +33,7 @@ version:    								## Print some version info
 	@echo -e "\033[0;32m$(TARGET):\033[0m current: \033[0;34m$(this_version)\033[0m master: \033[0;36m$(master_version)\033[0m"
 
 .PHONY: install
-install: build-c build-cli					## Install executable
+install: build-cli							## Install executable
 	@echo "Executable installed"
 
 .PHONY: start-dev-env
@@ -46,11 +48,10 @@ clean-dev-env: clean-c						## Clean dev environemnt
 build-cli: cli-dependencies	build-c			## Build PBWT cli
 	source venv/bin/activate && \
 	cd cli && \
-	pyinstaller --clean --onefile pbwt.py && \
+	pyinstaller -n pbwt --clean --onefile pbwt.py && \
 	echo "Installation successfully ended. Cleaning up" && \
-	mv dist/pbwt $(CURDIR) && \
+	cp dist/pbwt $(CURDIR) && \
+	mv build/pbwt dist pbwt.spec $(CURDIR)/build/ && \
 	rm -rf build && \
-	rm -rf dist && \
-	rm -f pbwt.spec && \
 	chmod 755 $(CURDIR)/pbwt && \
 	echo "Everything setup. You can use the app by typing ./pbwt"
