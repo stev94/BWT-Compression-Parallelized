@@ -25,4 +25,6 @@ jobs:
         run: make test-c
 
       - name: Running python tests
-        run: make test-cli
+        run: |
+          export PYTHONPATH=PATHONPATH:./venv/lib/python3.8/site-packages/ &&
+          make test-cli
