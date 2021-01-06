@@ -25,4 +25,4 @@ jobs:
         run: make test-c
 
       - name: Running python tests
-        run: pip install Click && make test-cli
+        run: export PYTHONPATH=. && make test-cli
