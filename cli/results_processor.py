@@ -30,7 +30,7 @@ def process_results(stdout, *args):
     if action == 'zip':
         _process_zip_results(stdout, *args)
     elif action == 'unzip':
-        exec_time = float(stdout.split('execution_time = ')[1].split(' -')[0])
+        exec_time = float(stdout.split('execution_time = ')[1].split('.')[0])
         create_msg(f'Time for decompression is {exec_time} seconds.')
     elif action == 'comparison':
         _process_compare_results(stdout)

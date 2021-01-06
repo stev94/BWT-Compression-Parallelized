@@ -11,6 +11,6 @@ setup(
     url='https://github.com/stev94/Parallel-BWT-Compression',
     python_requires='>=3.8',
     py_modules=['pbwt'],
-    install_requires=['click==7.1.2'],
+    install_requires=['Click==7.1.2'],
     entry_points={'console_scripts': ['pbwt=cli.pbwt:cli']}
 )

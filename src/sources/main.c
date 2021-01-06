@@ -107,8 +107,7 @@ int main(int argc, char *argv[], char *env[])
     } else if (!strcmp(action, "unzip"))
     {
         Results results = unzip(inPath, outPath);
-        printf("PBWT - execution_time = %f.\n" ,
-                results.executionTime, results.chunkSize);
+        printf("PBWT - execution_time = %f.\n" , results.executionTime);
         return 0;
     } else
     {
