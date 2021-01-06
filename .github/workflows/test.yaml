@@ -18,8 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          ls
-          cd Parallel-BWT-Compression &&
+          sudo apt install pthread &&
           pip install virtualenv &&
           make install
         working-directory: .
