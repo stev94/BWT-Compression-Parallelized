@@ -13,20 +13,20 @@ Below you can find how to install the full program (c and python), and how to us
 1. You need to have already setup python3 and a gcc compiler.
 
 2. Then download the source code from the [repository](https://github.com/stev94/Parallel-BWT-Compression).
-    ```bash
+    ```
     git clone https://github.com/stev94/Parallel-BWT-Compression.git
    ```
 
 3. Go in the created folder and install pbwt. This will create an executable 
    named pbwt inside the folder.
-    ```bash
+    ```
    cd Parallel-BWT-Compression
    make install 
    ```
 
 4. Now, if everything should be setup, you can verify it by typing `./pbwt` 
    inside the Parallel-BWT-Compression folder. The command should be equal to the following one:
-    ```bash
+    ```
     Usage: pbwt [OPTIONS] COMMAND [ARGS]...
     
       A command line interface for PBWT.
@@ -43,7 +43,7 @@ Below you can find how to install the full program (c and python), and how to us
    
 5. [OPTIONAL]. If you want to use pbwt from everywhere inside your computer follow 
    the following commands:
-   ```bash
+   ```
    cd Parallel-BWT-Compression
    sudo mv pbwt /usr/local/bin/pbwt
    sudo chmod 755 /usr/local/bin/pbwt
@@ -52,7 +52,7 @@ Below you can find how to install the full program (c and python), and how to us
 6. Verify the installation by typing the following command from everywhere in your computer
    you should see the `help` message as in point 4:
     ```bash
-   pwbt 
+    pwbt 
    ```
 
 
@@ -64,11 +64,11 @@ Three commands are available:
     ```
 - Unzip a file.
   ```bash
-    pbwt unzip INPUT_FILE [OUTPUT_FILE] 
+  pbwt unzip INPUT_FILE [OUTPUT_FILE] 
     ```
 - Compare two files
   ```bash
-    pbwt compare FILE1 FILE2 
+  pbwt compare FILE1 FILE2 
     ```
 
 For more information you can use the `pbwt [COMMAND] --help` option.
@@ -78,12 +78,12 @@ The documentation as well as a presentation of the work can be found [in this fo
 
 ## Tests
 There are some tests to validate the algorithm that use some benchmarks files that
-can be found [here](https://github.com/stev94/Parallel-BWT-Compression/blob/master/tests/examples)
+can be found [here](https://github.com/stev94/Parallel-BWT-Compression/blob/master/tests/examples).
 Each file is zipped, then unzipped, and the original file is compared with the unzipped one. They 
 must be equal to pass the test.
 
 The tests can be run by typing inside the `Parallel-BWT-Compression` folder, the following command:
-```bash
+```
 make test
 ```
 
