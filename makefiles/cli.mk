@@ -1,10 +1,8 @@
 .PHONY: test-cli
 test-cli:									## Run python tests
-	python -c "import sys; print(sys.path)" && \
 	source $(CURDIR)/venv/bin/activate && \
-	pip list && \
-	python -c "import sys; print(sys.path)" && \
-	pytest $(CURDIR)/tests/test_pbwt.py::TestPBWT::test_run_tests $(CURDIR)/tests/test_cli.py
+	pytest $(CURDIR)/tests/test_pbwt.py::TestPBWT::test_run_tests \
+			$(CURDIR)/tests/test_cli.py
 
 .PHONY: make-venv
 make-venv:									## Create python venv
