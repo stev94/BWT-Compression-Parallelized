@@ -47,7 +47,6 @@ Results _run(void (*runner)(file *in, FILE *out, clong chunkSize),
 
     double time = (end.tv_sec - start.tv_sec) + 
                     (end.tv_nsec - start.tv_nsec) / 1000000000.0;
-
     return (Results) {time, chunkSize};
 }
 
@@ -102,13 +101,13 @@ int main(int argc, char *argv[], char *env[])
         clong chunkSize = atof(argv[4]) * 1024 * 1024;
         cchar mode = argv[5];
         Results results = zip(inPath, outPath, mode, chunkSize);
-        printf("Results are: execution_time %ld - chunk_size = %d.\n" ,
+        printf("Results are: execution_time = %f - chunk_size = %d.\n" ,
                 results.executionTime, results.chunkSize);
         return 0;
     } else if (!strcmp(action, "unzip"))
     {
         Results results = unzip(inPath, outPath);
-        printf("Results are: execution_time %ld - chunk_size = %d.\n" ,
+        printf("Results are: execution_time = %f - chunk_size = %d.\n" ,
                 results.executionTime, results.chunkSize);
         return 0;
     } else

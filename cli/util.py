@@ -4,7 +4,7 @@ from cli.constants import PREFIX_MSG
 
 
 def create_msg(msg, error=False):
-    click.echo(PREFIX_MSG + msg, error=error)
+    click.echo(PREFIX_MSG + msg, err=error)
 
 
 def create_error(msg, exception):

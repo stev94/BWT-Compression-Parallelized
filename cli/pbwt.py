@@ -4,6 +4,7 @@ import subprocess
 
 from cli import version, validator
 from cli.constants import *
+from cli.results_processor import process_results
 
 
 @click.group()
@@ -36,7 +37,9 @@ def zip_(input_file, output_file, chunk_size, mode):
                    If not specified, the output will be placed in filename.pbwt
     """
     output_file = validator.validate_zip(input_file, output_file)
-    subprocess.call([PBWT_BIN, 'zip', input_file, output_file, str(chunk_size), mode])
+    process = subprocess.Popen([PBWT_BIN, 'zip', input_file, output_file,
+                                str(chunk_size), mode], stdout=subprocess.PIPE)
+    process_results(str(process.communicate()[0]), input_file, output_file)
 
 
 @cli.command('unzip')
@@ -53,7 +56,9 @@ def unzip(input_file, output_file):
                    If not specified, the output will be placed in filename.unpbwt
     """
     output_file = validator.validate_unzip(input_file, output_file)
-    subprocess.call([PBWT_BIN, 'unzip', input_file, output_file])
+    process = subprocess.Popen([PBWT_BIN, 'unzip', input_file, output_file],
+                               stdout=subprocess.PIPE)
+    process_results(str(process.communicate()[0]))
 
 
 @cli.command('compare')
@@ -68,7 +73,9 @@ def compare(file1, file2):
     INPUT_FILE  Path to a valid file with extension .pbwt to be compared.
     OUTPUT_FILE Path to a valid file with extension .pbwt to be compared.
     """
-    subprocess.call([PBWT_BIN, 'compare', file1, file2])
+    process = subprocess.Popen([PBWT_BIN, 'compare', file1, file2],
+                               stdout=subprocess.PIPE)
+    process_results(str(process.communicate()[0]))
 
 
 if __name__ == '__main__':
