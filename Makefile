@@ -1,9 +1,13 @@
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 THIS_FILE := $(firstword $(MAKEFILE_LIST))
+THIS_FOLDER := $(shell basename $(CURDIR))
+
+master_version := $$(git show master:cli/version.py | grep __version__ | awk -F= '{print $$2}' | awk -F\' '{print $$2}')
+this_branch := $(shell git rev-parse --abbrev-ref HEAD)
 
 # version
-version := $(shell cat cli/version.py | grep __version__ | awk 'BEGIN {FS = " = "}; {print substr($$2, 2, length($$2)-2)}')
+this_version := $(shell cat cli/version.py | grep __version__ | awk 'BEGIN {FS = " = "}; {print substr($$2, 2, length($$2)-2)}')
 VERSION ?= ${version}
 
 include makefiles/*
@@ -19,8 +23,8 @@ clean: clean-c clean-cli					## Clean builds folder
 	@echo "Everything cleaned."
 
 .PHONY: version
-version:									## Print some version info
-	@echo $(VERSION)
+version:    					## Print some version info
+	@echo -e "\033[0;32m$(TARGET):\033[0m current: \033[0;34m$(this_version)\033[0m master: \033[0;36m$(master_version)\033[0m"
 
 .PHONY: build
 build: build-c build-cli					## Build executable
