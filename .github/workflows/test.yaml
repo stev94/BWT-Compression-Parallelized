@@ -17,7 +17,10 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
-        run: pip install virtualenv && make install
+        run: |
+          cd Parallel-BWT-Compression &&
+          pip install virtualenv &&
+          make install
         working-directory: .
 
       - name: Running c tests
