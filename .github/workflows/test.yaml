@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install virtualenv &&
+          pip install virtualenv pyinstaller &&
           make install
         working-directory: .
 
