@@ -12,6 +12,8 @@ def run_comparison_analysis():
         file = input_provider.next_file
         if file is None:
             break
+        elif 'aaa.txt' in file:
+            continue
         print(f'Running test for file {file}')
         tester.run_compressors(file)
 

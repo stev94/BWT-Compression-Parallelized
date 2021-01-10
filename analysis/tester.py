@@ -26,6 +26,8 @@ class Tester:
         file_name = file.split(".")[0]
         for compressor_bin in glob.glob(os.path.join(COMPRESSORS_BIN, '*.sh')):
             compressor_name = compressor_bin.split('/')[-1].split('.sh')[0]
+            if compressor_name not in COMPRESSORS:
+                continue
             output_file = f'{file_name}.pbwt'
             process = subprocess.Popen(['bash', compressor_bin, file, output_file],
                                        stdout=subprocess.PIPE)

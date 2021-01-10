@@ -5,3 +5,5 @@ pbwtzip
 /pbwt
 /analysis/zips/
 /cpbwt
+/analysis/results/deflated.csv
+/analysis/results/exec_time.csv
