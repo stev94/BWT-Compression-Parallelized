@@ -13,10 +13,11 @@ DEFUALT_RUNNING_MODE = 'parallel'
 # Cli Help messages
 CHUNK_SIZE_HELP = 'Set the size of the chunk (in MB) in which the file si divided before processing in the range [0.1, 5].'
 RUNNING_MODES_HELP = 'Specify if running PBWT in parallel or sequentially. Parallel mode should speed up 2x.'
+DELETE_OUTPUT_HELP = 'Use this option to delete the output file in case it is already present'
 
 # files and directoeis
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PBWT_BIN = os.path.join('bin', 'cpbwt')
+PBWT_BIN = 'cpbwt'
 
 # Messages
 PREFIX_MSG = 'PBWT - '

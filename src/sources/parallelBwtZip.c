@@ -92,12 +92,12 @@ void compressParallel(FILE 		 *input,
 					  FILE 		 *output,
 					  const long  chunkSize)
 {
+    printf("new\n");
 	int i = 0, index = 0, flag = 0, littleChunk = 0;
 	pthread_t 	   threads[NUM_THREADS];
 	pthread_attr_t attr;
 	cpu_set_t 	   cpus;
 	Text 		   inZip;
-
 	//Initialization
 	nBlocks = ceil((float)fileSize(input) / (float)chunkSize);
 

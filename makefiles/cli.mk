@@ -19,6 +19,7 @@ cli-dependencies: make-venv					## Install cli dependencies
 	source venv/bin/activate && \
 	cd cli && \
 	pip install -e . && \
+	pip install -r ../analysis/requirements.txt && \
 	rm -rf pbwt_cli.egg-info
 
 .PHONY: build-autocomplete

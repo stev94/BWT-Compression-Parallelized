@@ -47,6 +47,7 @@
 
 // TYPEDEFS
 typedef const long clong;
+typedef const double cdouble;
 typedef char* str;
 typedef const char cchar;
 typedef char *const cstr;

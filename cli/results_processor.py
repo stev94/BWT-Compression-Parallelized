@@ -35,4 +35,5 @@ def process_results(stdout, *args):
     elif action == 'comparison':
         _process_compare_results(stdout)
     else:
-        raise ValueError("The read action is not available. How the fuck could this happen?!")
+        raise ValueError(f"The action {action} is not available. How the fuck"
+                         f" could this happen?!")

@@ -26,7 +26,8 @@ def cli(ctx):
 @click.option('--mode',
               type=click.Choice(RUNNING_MODES, case_sensitive=False),
               help=RUNNING_MODES_HELP, default=DEFUALT_RUNNING_MODE, show_default=True)
-def zip_(input_file, output_file, chunk_size, mode):
+@click.option('--delete-output', '-del-out', is_flag=True, help=DELETE_OUTPUT_HELP)
+def zip_(input_file, output_file, chunk_size, mode, delete_output):
     """
     Zip the input file and put the result in the output file.
 
@@ -36,16 +37,17 @@ def zip_(input_file, output_file, chunk_size, mode):
     [OUTPUT_FILE]  Path to a valid file with extension .pbwt.
                    If not specified, the output will be placed in filename.pbwt
     """
-    output_file = validator.validate_zip(input_file, output_file)
+    output_file = validator.validate_zip(input_file, output_file, delete_output)
     process = subprocess.Popen([PBWT_BIN, 'zip', input_file, output_file,
                                 str(chunk_size), mode], stdout=subprocess.PIPE)
-    process_results(str(process.communicate()[0]), input_file, output_file)
+    _process_results(process, input_file, output_file)
 
 
 @cli.command('unzip')
 @click.argument('INPUT_FILE', type=click.Path(exists=True))
 @click.argument('OUTPUT_FILE', type=click.Path(), required=False, default=None)
-def unzip(input_file, output_file):
+@click.option('--delete-output', '-del-out', is_flag=True, help=DELETE_OUTPUT_HELP)
+def unzip(input_file, output_file, delete_output):
     """
     Unzip the input file and put the result in the output file.
 
@@ -55,10 +57,10 @@ def unzip(input_file, output_file):
     [OUTPUT_FILE]  Path to a valid file with extension .unpbwt.
                    If not specified, the output will be placed in filename.unpbwt
     """
-    output_file = validator.validate_unzip(input_file, output_file)
+    output_file = validator.validate_unzip(input_file, output_file, delete_output)
     process = subprocess.Popen([PBWT_BIN, 'unzip', input_file, output_file],
                                stdout=subprocess.PIPE)
-    process_results(str(process.communicate()[0]))
+    _process_results(process)
 
 
 @cli.command('compare')
@@ -75,7 +77,14 @@ def compare(file1, file2):
     """
     process = subprocess.Popen([PBWT_BIN, 'compare', file1, file2],
                                stdout=subprocess.PIPE)
-    process_results(str(process.communicate()[0]))
+    _process_results(process)
+
+
+def _process_results(process, *args):
+    stdout = process.communicate()
+    if not stdout:
+        raise ValueError("Error. The process returned without any output.")
+    process_results(str(stdout[0]), *args)
 
 
 if __name__ == '__main__':
