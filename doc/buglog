@@ -1,0 +1,2 @@
+- A quanto pare se ho un file con una sola lettera molto ripetuta c'è un segmentation
+fault in bwt.c:143. Il problema è a riga 132. Provare testo artificial/aaa.txt

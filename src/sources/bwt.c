@@ -130,7 +130,6 @@ void createSuffixArray(Node 	*const 	node,
 
 	//Recursion
 	HASH_SORT(node->children, sortNodesByFirstChar);
-
 	for(child=node->children; child!=NULL; child=child->hh.next)
 		createSuffixArray(child->node, input, i, suffixArray);
 
@@ -141,9 +140,12 @@ void createSuffixArray(Node 	*const 	node,
 int sortNodesByFirstChar(HashChildren *const el1,
 						 HashChildren *const el2)
 {
-	if(     el1->firstChar < el2->firstChar)	return -1;
-	else if(el1->firstChar > el2->firstChar)	return  1;
-	else 										return  0;
+	if(el1->firstChar < el2->firstChar)
+	    return -1;
+	else if(el1->firstChar > el2->firstChar)
+	    return  1;
+	else
+        return  0;
 }
 
 /**
